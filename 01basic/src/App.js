@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"; // this is a hook
 import My_test from "./my_test.jsx";
 import "./App.css";
 
@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <>
+    <div style={{ textAlign: "center" ,backgroundColor: "lightblue"}}>
       <h1>Hello this is my react application and my name is {name}</h1>
       {elemnt}
       <My_test />
@@ -45,7 +45,7 @@ function App() {
 
       <input onChange={onSearchText} placeholder="Search..." />
       <p>Search text: {inputText}</p>
-    </>
+    </div>
   );
 }
 
