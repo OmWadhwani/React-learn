@@ -9,31 +9,32 @@ const appBrands = [
   { id: 6, name: "Adidas" },
 ];
 
-function My_test() {
+function My_test({ addToCart }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // Filter the brands based on searchTerm
   const filteredBrands = appBrands.filter((brand) =>
     brand.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#8a3434ff" }}>
-      <h1>This is from brands.jsx file.</h1>
+    <div>
+      <h1 style={{ color: "white" }}>This is from brands.jsx file.</h1>
       <input
         onChange={handleSearch}
         type="text"
         placeholder="Search for a brand"
-        style={{ padding: "10px" }}
+        style={{ padding: "10px", marginBottom: "20px" }}
       />
+
       <ul>
         {filteredBrands.map((brand) => (
-          <li key={brand.id} style={{ color: "white" }}>
-            {brand.name}
+          <li key={brand.id} style={{ color: "white", marginBottom: "10px" }}>
+            {brand.name}{" "}
+            <button onClick={() => addToCart(brand)}>Add to cart</button>
           </li>
         ))}
       </ul>
