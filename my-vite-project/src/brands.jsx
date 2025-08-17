@@ -9,11 +9,23 @@ const appBrands = [
   { id: 6, name: "Adidas" },
 ];
 
-function My_test({ addToCart }) {
+function My_test() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [cart, setCart] = useState([]);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const addToCart = (brand) => {
+    // prevent duplicates
+    if (!cart.find((item) => item.id === brand.id)) {
+      setCart((prevCart) => [...prevCart, brand]);
+    }
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
   const filteredBrands = appBrands.filter((brand) =>
@@ -21,8 +33,10 @@ function My_test({ addToCart }) {
   );
 
   return (
-    <div>
-      <h1 style={{ color: "white" }}>This is from brands.jsx file.</h1>
+    <div style={{ padding: "20px", backgroundColor: "#8a3434ff" }}>
+      <h1 style={{ color: "white" }}>Brands & Cart</h1>
+
+      {/* Search input */}
       <input
         onChange={handleSearch}
         type="text"
@@ -30,6 +44,8 @@ function My_test({ addToCart }) {
         style={{ padding: "10px", marginBottom: "20px" }}
       />
 
+      {/* Available Brands */}
+      <h2 style={{ color: "white" }}>Available Brands</h2>
       <ul>
         {filteredBrands.map((brand) => (
           <li key={brand.id} style={{ color: "white", marginBottom: "10px" }}>
@@ -38,6 +54,21 @@ function My_test({ addToCart }) {
           </li>
         ))}
       </ul>
+
+      {/* Cart Section */}
+      <h2 style={{ color: "white" }}>Your Cart</h2>
+      {cart.length === 0 ? (
+        <p style={{ color: "white" }}>Cart is empty</p>
+      ) : (
+        <ul>
+          {cart.map((item) => (
+            <li key={item.id} style={{ color: "white", marginBottom: "10px" }}>
+              {item.name}{" "}
+              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

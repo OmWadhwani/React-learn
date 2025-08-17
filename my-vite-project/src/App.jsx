@@ -1,17 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import My_test from "./brands";
-import AddToCart from "./AddToCart";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  // Function to add brand to cart (passed down to My_test)
-  const addToCart = (brand) => {
-    if (!cart.find((item) => item.id === brand.id)) {
-      setCart((prevCart) => [...prevCart, brand]);
-    }
-  };
-
   return (
     <div
       style={{
@@ -22,12 +12,7 @@ function App() {
     >
       <h1>Basic Vite React App</h1>
       <h2>and this is the 2nd header</h2>
-
-      {/* Pass addToCart down so My_test can call it */}
-      <My_test addToCart={addToCart} />
-
-      {/* Pass cart so AddToCart can display it */}
-      <AddToCart cart={cart} />
+      <My_test />
     </div>
   );
 }
