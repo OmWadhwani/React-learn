@@ -10,7 +10,7 @@ const appBrands = [
 ];
 
 function My_test() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); //initially empty search term
   const [cart, setCart] = useState([]);
 
   const handleSearch = (e) => {
